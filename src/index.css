@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.add-page, .edit-page {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.add-page form, .edit-page form {
+  color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+.add-page form input, .edit-page form input {
+  color: rgb(0, 0, 0);
+  margin: 5px;
+}
+
+.add-page form button, .edit-page form button {
+  margin-top: 15px;
+}
