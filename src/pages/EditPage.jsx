@@ -11,7 +11,7 @@ const EditPage = () => {
         image: yup.string().required("Обязательно"),
         name: yup.string().min(3).max(30).required("Обязательно"),
         category: yup.string().min(2).max(30).required("Обязательно"),
-        composition: yup.string().min(10).max(255).required("Обязательно"),
+        description: yup.string().min(10).max(1555).required("Обязательно"),
         price: yup.number().min(3).required("Обязательно"),
         gender: yup.string().min(1).max(30).required("Обязательно"),
     });
@@ -71,7 +71,7 @@ const EditPage = () => {
                                     onChange={handleChange}
                                 />
                                 <TextField
-                                    label="Категория продукта"
+                                    label="Бренд продукта"
                                     type="text"
                                     variant="standard"
                                     name="category"
@@ -84,10 +84,10 @@ const EditPage = () => {
                                     label="Состав"
                                     type="text"
                                     variant="standard"
-                                    name="composition"
-                                    value={values.composition}
-                                    error={!!errors.composition && touched.composition}
-                                    helperText={touched.composition ? errors.composition : ""}
+                                    name="description"
+                                    value={values.description}
+                                    error={!!errors.description && touched.description}
+                                    helperText={touched.description ? errors.description : ""}
                                     onChange={handleChange}
                                 />
 

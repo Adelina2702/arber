@@ -5,12 +5,13 @@ import {
     onAuthStateChanged,
     signInWithEmailAndPassword,
     signOut,
+    sendPasswordResetEmail,
 } from "firebase/auth";
 
 export const authContext = createContext();
 const INIT_STATE = {
     user: '',
-
+    forgotPassword: '',
 }; 
 
 const reducer = (state = INIT_STATE, action) => {
@@ -50,6 +51,10 @@ const AuthContextProvider = (props) => {
                 email,
                 password
             );
+            let gg = {
+                username : email
+            }
+           localStorage.setItem('user', JSON.stringify(gg))
         } catch (e) {
             console.log(e);
         }
@@ -62,27 +67,38 @@ const AuthContextProvider = (props) => {
                     type: "LOGOUT_USER",
                     payload: '',
                 });
+                localStorage.removeItem('user')
             })
             .catch((e) => {
                 console.log(e);
             });
     };
-    let adminEmail = 'kubaismailov02@gmail.com';
+    let adminEmail = 'aadelya2702@gmail.com';
 
     const loginUserWithEmail = async (email, password) => {
         try {
             await signInWithEmailAndPassword(auth, email, password)
+            let gg = {
+                username: email
+            }
+            localStorage.setItem('user', JSON.stringify(gg))
         } catch (e) {
             console.log(e);
         }
     };
 
+    function forgotPassword(email) {
+        return sendPasswordResetEmail(auth, email, {
+            url: "http://localhost:8001/watches",
+        });
+    }
     return (
         <authContext.Provider
             value={{
                 createUserWithEmailAndPasswordHandler,
                 loginUserWithEmail,
                 logOut,
+                forgotPassword,
                 user: state.user,
                 adminEmail
             }}

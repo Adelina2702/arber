@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 import { authContext } from "../../contexts/AuthContext";
 
 export const SignInModal = (props) => {
@@ -63,6 +64,11 @@ export const SignInModal = (props) => {
                         <Button variant="primary" type="submit">
                             Войти
                         </Button>
+                        <Link to="/forgot">
+                        <Button onClick={props.handleCloseLogin} >
+                            Забыли пароль
+                        </Button>
+                        </Link>
                     </Form>
                 </Modal.Body>
             </Modal>

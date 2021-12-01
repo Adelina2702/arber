@@ -13,7 +13,7 @@ const AddPage = () => {
     name: yup
       .string()
       .min(3, "Минимальное 3 символа")
-      .max(30, "Максимальное 30 символов")
+      .max(100, "Максимальное 100 символов")
       .required("Данное поле обязательно"),
       gender: yup
           .string()
@@ -25,10 +25,10 @@ const AddPage = () => {
       .min(2, "Минимальное 2 символа")
       .max(30, "Максимальное 30 символов")
       .required("Данное поле обязательно"),
-    composition: yup
+    description: yup
       .string()
       .min(10, "Минимальное 10 символов")
-      .max(255, "Максимальное 255 символов")
+      .max(1555, "Максимальное 1555 символов")
       .required("Данное поле обязательно"),
     price: yup
       .number()
@@ -54,7 +54,7 @@ const AddPage = () => {
             name: '',
             gender: '',
             category: '',
-            composition: '',
+            description: '',
             price: ''
         }}
       >
@@ -91,7 +91,7 @@ const AddPage = () => {
                           onChange={handleChange}
                       />
             <TextField
-              label="Категория"
+              label="Бренд"
               type="text"
               variant="standard"
               name="category"
@@ -101,13 +101,13 @@ const AddPage = () => {
               onChange={handleChange}
             />
             <TextField
-              label="Состав:"
+              label="Описание"
               type="text"
               variant="standard"
-              name="composition"
-              value={values.composition}
-              error={!!errors.composition && touched.composition}
-              helperText={touched.composition ? errors.composition : ''}
+              name="description"
+              value={values.description}
+              error={!!errors.description && touched.description}
+              helperText={touched.description ? errors.description : ''}
               onChange={handleChange}
             />
             

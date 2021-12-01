@@ -27,6 +27,9 @@ import { clientContext } from "../contexts/ClientContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Favorites from "../pages/Favorites"
 import { authContext } from "../contexts/AuthContext";
+import WatchIcon from '@mui/icons-material/Watch';
+import HistoryIcon from '@mui/icons-material/History';
+import { historyContext } from "../contexts/HistoryContext";
 
 
 const Search = styled("div")(({ theme }) => ({
@@ -80,6 +83,7 @@ export default function NavBar() {
         productsCountInFavorites,
         getFavorite,
     } = React.useContext(clientContext);
+    const {getViews} = React.useContext(historyContext)
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -140,7 +144,7 @@ export default function NavBar() {
         profile = (
             <>
                 <Button color="inherit" onClick={handleShowLogin} style={{ fontFamily: "Francois One, sans-serif", letterSpacing: "1px", fontSize: "16px" }}>
-                    Sign In
+                    Log In
                 </Button>
                 <Button color="inherit" onClick={handleShow} style={{ fontFamily: "Francois One, sans-serif", letterSpacing: "1px", fontSize: "16px" }}>
                     Sign Up
@@ -153,7 +157,7 @@ export default function NavBar() {
     if (user.email === adminEmail) {
         temp = (
             <Link to="/admin">
-                <Button variant="contained">Admin</Button>
+                <Button variant="contained" style={{color: "white", background: "black"}}>Admin</Button>
             </Link>
         );
     }
@@ -265,13 +269,32 @@ export default function NavBar() {
                 </IconButton>
                 <p>Profile</p>
             </MenuItem>
+                        <MenuItem onClick={() => {
+                navigate('/history')
+            }}>
+                <IconButton
+                    onClick={() => navigate('/history')}
+                    size="large"
+                    aria-label="show 17 new notifications"
+                    color="inherit"
+                >
+                    <Badge color="primary">
+                        <HistoryIcon style={{ color: "black" }}/>
+                    </Badge>
+                </IconButton>
+                <p>История</p>
+            </MenuItem>
         </Menu>
+        
     );
     return (
         <>
             <Box sx={{ flexGrow: 1 }}>
+                {/* <div style={{ background: "black", color: "white"}}>
+                    <p style={{ fontSize: "40px", display: "flex", justifyContent: "center" }}>Black <span style={{ fontSize: "40px", color: "red" }}>Friday</span></p>
+                </div> */}
                 <AppBar
-                    style={{ background: "black" }}
+                    style={{ background: "white", color: "black" }}
                     position="static"
                 >
                     <Toolbar>
@@ -287,7 +310,7 @@ export default function NavBar() {
                             }}
                             style={{ cursor: 'pointer', fontSize: "30px", fontFamily: "Arvo, serif", letterSpacing: "1px" }}
                         >
-                            Arber
+                            Arber<WatchIcon/>
                         </Typography>
                         <Typography
                             variant="h6"
@@ -303,18 +326,13 @@ export default function NavBar() {
                             noWrap
                             component="div"
                             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                        onClick={() => {
+                            navigate("/");
+                            getProducts();
+                        }}
                             style={{ fontFamily: "Arvo, serif", fontWeight: "500", cursor: 'pointer' }}
                         >
-                            Home
-                        </Typography>
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                            style={{ fontFamily: "Arvo, serif", fontWeight: "500", cursor: 'pointer' }}
-                        >
-                            Contact
+                            Главная
                         </Typography>
                         <Search>
                             <SearchIconWrapper>
@@ -337,7 +355,7 @@ export default function NavBar() {
                                     color="inherit"
                                 >
                                     <Badge badgeContent={productCountInCart} color="primary">
-                                        <ShoppingCart style={{ color: 'white' }} />
+                                        <ShoppingCart style={{ color: 'black' }} />
                                     </Badge>
                                 </IconButton>
                             </Link>
@@ -353,6 +371,19 @@ export default function NavBar() {
                                             getFavorite();
                                         }}
                                     />
+                                </Badge>
+                            </IconButton>
+                            <IconButton
+                                size="large"
+                                aria-label="show 17 new notifications"
+                                color="inherit"
+                                onClick={() => {
+                                        navigate("/history")
+                                }}
+                            >
+                                <Badge color="primary">
+                                  <HistoryIcon
+                                  />
                                 </Badge>
                             </IconButton>
                             {profile}

@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-// import BasicTable from "../components/BasicTable";
+import BasicTable from "../components/BasicTable";
 
 const AdminPage = () => {
     return (
@@ -13,7 +13,7 @@ const AdminPage = () => {
                 </Button>
             </Link>
             <div>
-                {/* <BasicTable /> */}
+                <BasicTable/>
             </div>
         </div>
     );

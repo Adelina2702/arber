@@ -7,9 +7,11 @@ import FormLabel from "@mui/material/FormLabel";
 import { useNavigate } from "react-router";
 import MediaCard from '../components/MediaCard';
 import { clientContext } from "../contexts/ClientContext";
-// import Pagination from "../components/Pagination";
 // import MyCarousel from '../components/Carousel/Carousel';
 import { pink } from "@mui/material/colors";
+import Pagination from "../components/Pagination";
+import Footer from "../components/Footer/Footer";
+
 
 const HomePage = () => {
     const { getProducts, products, currentPosts } = useContext(clientContext);
@@ -35,31 +37,34 @@ const HomePage = () => {
 
     return (
         <>
+            <img className="photo" src="https://www.chopard.ru/media/Catalog_P_Banners/header_HS_278608_6001_desktop.jpg" alt="photo" />
             {/* <MyCarousel /> */}
             <div className="home-page">
                 <div className="sidebar" >
-                    <FormControl component="fieldset">
-                        <FormLabel className="category_h2" style={{ color: "white", textAlign: "center", marginTop: "10px", fontFamily: "Francois One, sans-serif", letterSpacing: "1px", fontSize: "30px", fontWeight: "bold" }} component="legend">Категория</FormLabel>
+                    <FormControl className='radio-grrr' component="fieldset">
+                        <FormLabel className="category_h2 " style={{ color: "white", textAlign: "center", marginTop: "10px", fontFamily: "Arvo, serif", letterSpacing: "1.10px", fontSize: "30px", fontWeight: "500" }} component="legend">Бренд</FormLabel>
                         <RadioGroup
                             aria-label="gender"
                             value={brandValue}
                             name="radio-buttons-group"
                             onChange={(e) => filterProducts("category", e.target.value)}
                         >
+                            <div className="filter">
                             <FormControlLabel
-                                value="Завтраки"
+                                value="Chopard"
                                 control={<Radio
                                     sx={{
                                         color: pink[50],
                                         "&.Mui-checked": {
                                             color: pink[50],
                                         },
-                                    }} />}
-                                label="Завтраки"
-                            /> <img width='100px' src="" />
+                                    }}
+                                     />}
+                                    style={{ color: "white", fontFamily: "Arvo, serif",}}
+                                label="Chopard"
+                            />
                             <FormControlLabel
-                                value="Супы"
-
+                                value="Gucci"
                                 control={<Radio
                                     sx={{
                                         color: pink[50],
@@ -68,10 +73,24 @@ const HomePage = () => {
                                         },
                                     }}
                                 />}
-                                label="Супы"
+                                    style={{ color: "white", fontFamily: "Arvo, serif", }}
+                                label="Gucci"
                             />
                             <FormControlLabel
-                                value="Салаты"
+                                value="G-Shock"
+                                control={<Radio
+                                    sx={{
+                                        color: pink[50],
+                                        "&.Mui-checked": {
+                                            color: pink[50],
+                                        },
+                                    }}
+                                />}
+                                    style={{ color: "white", fontFamily: "Arvo, serif", }}
+                                label="G-Shock"
+                            />
+                            <FormControlLabel
+                                value="Armani"
                                 control={<Radio
                                     sx={{
                                         color: pink[50],
@@ -79,10 +98,11 @@ const HomePage = () => {
                                             color: pink[50],
                                         },
                                     }} />}
-                                label="Салаты"
+                                    style={{ color: "white", fontFamily: "Arvo, serif", }}
+                                label="Armani"
                             />
                             <FormControlLabel
-                                value="Вторые блюда"
+                                value="Michael Kors"
                                 control={<Radio
                                     sx={{
                                         color: pink[50],
@@ -90,10 +110,11 @@ const HomePage = () => {
                                             color: pink[50],
                                         },
                                     }} />}
-                                label="Вторые блюда"
+                                style={{ color: "white" }}
+                                label="Michael Kors"
                             />
                             <FormControlLabel
-                                value="Пицца"
+                                value="Tissot"
                                 control={<Radio
                                     sx={{
                                         color: pink[50],
@@ -101,10 +122,11 @@ const HomePage = () => {
                                             color: pink[50],
                                         },
                                     }} />}
-                                label="Пицца"
+                                style={{ color: "white" }}
+                                label="Tissot"
                             />
                             <FormControlLabel
-                                value="Суши"
+                                value="Rolex"
                                 control={<Radio
                                     sx={{
                                         color: pink[50],
@@ -112,10 +134,11 @@ const HomePage = () => {
                                             color: pink[50],
                                         },
                                     }} />}
-                                label="Суши"
+                                style={{ color: "white" }}
+                                label="Rolex"
                             />
                             <FormControlLabel
-                                value="Роллы"
+                                value="Casio"
                                 control={<Radio
                                     sx={{
                                         color: pink[50],
@@ -123,10 +146,11 @@ const HomePage = () => {
                                             color: pink[50],
                                         },
                                     }} />}
-                                label="Роллы"
+                                style={{ color: "white" }}
+                                label="Casio"
                             />
                             <FormControlLabel
-                                value="Комбо"
+                                    value="Lacoste"
                                 control={<Radio
                                     sx={{
                                         color: pink[50],
@@ -134,119 +158,10 @@ const HomePage = () => {
                                             color: pink[50],
                                         },
                                     }} />}
-                                label="Комбо"
+                                style={{ color: "white" }}
+                                    label="Lacoste"
                             />
-                            <FormControlLabel
-                                value="Шаурма"
-                                control={<Radio
-                                    sx={{
-                                        color: pink[50],
-                                        "&.Mui-checked": {
-                                            color: pink[50],
-                                        },
-                                    }} />}
-                                label="Шаурма"
-                            />
-                            <FormControlLabel
-                                value="Гамбургер"
-                                control={<Radio
-                                    sx={{
-                                        color: pink[50],
-                                        "&.Mui-checked": {
-                                            color: pink[50],
-                                        },
-                                    }} />}
-                                label="Гамбургер"
-                            />
-                            <FormControlLabel
-                                value="Хот Дог"
-                                control={<Radio
-                                    sx={{
-                                        color: pink[50],
-                                        "&.Mui-checked": {
-                                            color: pink[50],
-                                        },
-                                    }} />}
-                                label="Хот Дог"
-                            />
-                            <FormControlLabel
-                                value="Гарниры"
-                                control={<Radio
-                                    sx={{
-                                        color: pink[50],
-                                        "&.Mui-checked": {
-                                            color: pink[50],
-                                        },
-                                    }} />}
-                                label="Гарниры"
-                            />
-                            <FormControlLabel
-                                value="Стейки"
-                                control={<Radio
-                                    sx={{
-                                        color: pink[50],
-                                        "&.Mui-checked": {
-                                            color: pink[50],
-                                        },
-                                    }} />}
-                                label="Стейки"
-                            />
-                            <FormControlLabel
-                                value="Паста"
-                                control={<Radio
-                                    sx={{
-                                        color: pink[50],
-                                        "&.Mui-checked": {
-                                            color: pink[50],
-                                        },
-                                    }} />}
-                                label="Паста"
-                            />
-                            <FormControlLabel
-                                value="Боул"
-                                control={<Radio
-                                    sx={{
-                                        color: pink[50],
-                                        "&.Mui-checked": {
-                                            color: pink[50],
-                                        },
-                                    }} />}
-                                label="Боул"
-                            />
-                            <FormControlLabel
-                                value="Горячие напитки"
-                                control={<Radio
-                                    sx={{
-                                        color: pink[50],
-                                        "&.Mui-checked": {
-                                            color: pink[50],
-                                        },
-                                    }} />}
-                                label="Горячие напитки"
-                            />
-                            <FormControlLabel
-                                value="Холодные напитки"
-                                control={<Radio
-                                    sx={{
-                                        color: pink[50],
-                                        "&.Mui-checked": {
-                                            color: pink[50],
-                                        },
-                                    }} />}
-                                label="Холодные напитки"
-                            />
-
-                            <FormControlLabel
-                                value="Дессерты"
-                                control={<Radio
-                                    sx={{
-                                        color: pink[50],
-                                        "&.Mui-checked": {
-                                            color: pink[50],
-                                        },
-                                    }} />}
-                                label="Дессерты"
-                            />
+                            </div>
                         </RadioGroup>
                     </FormControl>
                 </div>
@@ -264,7 +179,10 @@ const HomePage = () => {
             </div>
 
             <div>
-                {/* <Pagination /> */}
+                <Pagination />
+            </div>
+            <div>
+                <Footer/>
             </div>
         </>
     );

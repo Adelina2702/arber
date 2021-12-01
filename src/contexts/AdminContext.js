@@ -26,32 +26,30 @@ const reducer = (state = INIT_STATE, action) => {
 const AdminContextProvider = (props) => {
     const [state, dispatch] = useReducer(reducer, INIT_STATE)
 
-    //Create
-    const addProduct = async (product) => {
-        try {
-            const response = await axios.post(API, product)
-            console.log(response);
-        } catch (e) {
-            console.log(e);
-        }
-    }
-
-    //Read
+       //! Read
     const getProducts = async () => {
         try {
-            const response = await axios(API)
+            const response = await axios(API);
             let action = {
                 type: "GET_PRODUCTS",
                 payload: response.data,
-            }
-            dispatch(action)
-            getProducts()
+            };
+            dispatch(action);
         } catch (e) {
             console.log(e);
         }
-    }
+    };
 
-    //Update
+    //! Create 
+    const addProduct = async (product) => {
+        try {
+            const response = await axios.post(API, product);
+            getProducts();
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    //! Update
     const getProductToEdit = async (id) => {
         try {
             const response = await axios(`${API}/${id}`)
@@ -82,7 +80,7 @@ const AdminContextProvider = (props) => {
         }
         dispatch(action)
     }
-    //Delete 
+    //! Delete 
     const deleteProduct = async (id) => {
         try {
             const response = await axios.delete(`${API}/${id}`)

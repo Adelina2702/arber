@@ -9,20 +9,27 @@ import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { clientContext } from '../contexts/ClientContext';
-import DetailModal from './DetailModal';
+import DetailPage from '../pages/DetailPage';
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 
 const MediaCard = (props) => {
     const { addAndDeleteProductInCart, checkProductInCart, addAndDeleteProductInFavorites, checkFavoriteInFavorites, getProducts } = useContext(clientContext)
-    const [modalShow, setModalShow] = React.useState(false);
-    console.log(props);
+    const [getDetails, productsDetail] = React.useState(false);
+    // console.log(props);
+
+    useEffect(() => {
+        Aos.init({ duration: 2000 });
+    }, [])
 
     return (
-        <Card sx={{ maxWidth: 280, margin: '10px', borderRadius: "20px", height: "350px", border: "1px solid black" }}
+        <Card data-aos="zoom-in-down" sx={{ maxWidth: 280, margin: '10px', borderRadius: "10px", border: "1px solid black" }}
             className='cartochka'>
             <CardMedia
                 component="img"
-                height="140"
+                height="250"
+                width="250"
                 style={{ objectFit: 'contain' }}
                 image={props.product.image}
                 alt="product"
@@ -30,6 +37,9 @@ const MediaCard = (props) => {
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div" style={{ fontWeight: "bold", fontFamily: "revert" }}>
                     {props.product.name}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="div" style={{ fontWeight: "bold", fontFamily: "revert" }}>
+                    {props.product.category}
                 </Typography>
                 <Typography variant="body2" color="text.secondary" style={{ fontSize: "20px", fontFamily: "revert", fontWeight: "600" }}>
                     {props.product.price} сом
@@ -42,18 +52,15 @@ const MediaCard = (props) => {
                 <Button size="small" onClick={() => addAndDeleteProductInFavorites(props.product)}>
                     <FavoriteIcon color={checkFavoriteInFavorites(props.product.id) ? 'error' : 'primary'} />
                 </Button>
-                {/* <Link to={`/product/${props.product.id}`}> */}
+                <Link to={`/product/${props.product.id}`}>
                 <Button size="small" style={{ fontFamily: "revert" }}
-                    variant="contained" onClick={() => setModalShow(true)}><small className="btn2">Подробнее</small></Button>
-                {/* </Link> */}
-                <DetailModal
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                    products={props.product}
-                />
+                    variant="contained"><small className="btn2">Подробнее</small></Button>
+                </Link>
+                {/* <DetailPage
+                    // products={props.product}
+                /> */}
             </CardActions>
         </Card>
-        // </ReactCardFlip>
     );
 };
 
